@@ -49,7 +49,7 @@
           Name
         </label>
         <input
-          // aria-describedby 속성이 아래 <div>의 id를 갖는다.
+          // aria-describedby 속성이 아래 <span>의 id를 갖는다.
           {...inputProps}
           type="text"
           placeholder="Your name is..."
