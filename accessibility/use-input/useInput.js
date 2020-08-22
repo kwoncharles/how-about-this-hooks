@@ -1,44 +1,50 @@
 import uuid from 'react-uuid';
+import { useRef } from 'react';
 
+/**
+ * 
+ * @param {Object} props
+ * @param {boolean} props.withDescription
+ * @param {boolean} props.withLabel 
+ */
 function useInput({
-  withLabel,
   withDescription,
+  withLabel,
 }) {
-  const inputId = uuid();
-
+  const inputId = useRef(uuid());
+  const labelId = useRef(uuid());
+  const descId = useRef(uuid());
   let result = {
-    inputProps: {
-      id: inputId,
+    input: {
+      id: inputId.current,
     },
   };
 
   if (withLabel) {
-    const labelId = uuid();
     result = {
       ...result,
-      inputProps: {
-        ...result.inputProps,
-        'aria-labelledby': labelId,
+      input: {
+        ...result.input,
+        'aria-labelledby': labelId.current,
       },
-      labelProps: {
-        id: labelId,
-        htmlFor: inputId,
+      label: {
+        id: labelId.current,
+        htmlFor: inputId.current,
       },
     }
   }
 
   if (withDescription) {
-    const descId = uuid();
     result = {
       ...result,
-      inputProps: {
-        ...result.inputProps,
-        'aria-describedby': descId,
+      input: {
+        ...result.input,
+        'aria-describedby': descId.current,
       },
-      descProps: {
-        id: descId,
+      desc: {
+        id: descId.current,
       },
-    }
+    };
   }
 
   return result;
