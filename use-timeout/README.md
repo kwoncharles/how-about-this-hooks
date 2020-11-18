@@ -6,10 +6,10 @@
 ## Example
 
 ```jsx
+// ******************************
+//      without `useTimeout` ⛔️
+// ******************************
 function Example() {
-  // ******************************
-  //      without `useTimeout` ⛔️
-  // ******************************
   const timeoutId = useRef()
 
   useEffect(() => {
@@ -22,11 +22,15 @@ function Example() {
   useEffect(() => () => {
     window.clearTimeout(timeoutId.current)
   }, [])
+}
 
 
-  // ******************************
-  //      with `useTimeout` ✅
-  // ******************************
+
+
+// ******************************
+//      with `useTimeout` ✅
+// ******************************
+function Example() {
   const createTimeout = useTimeout()
 
   useEffect(() => {
